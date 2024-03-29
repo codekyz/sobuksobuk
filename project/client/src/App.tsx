@@ -18,6 +18,7 @@ import SearchPage from "components/pages/SearchPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import EditPage from "components/pages/EditPage";
 import SettingPage from "components/pages/SettingPage";
+import IntroPage from "components/pages/IntroPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -63,11 +64,14 @@ function App() {
 
         {/* 상관없이 접근 가능 */}
         <Route element={<MainLayout />}>
-          <Route path="/" element={<Navigate replace to="search" />} />
+          <Route path="/" element={<Navigate replace to="intro" />} />
           <Route path="search" element={<SearchPage />} />
           <Route path="feed" element={<FeedPage />} />
           <Route path="challenge" element={<ChallengePage />} />
           <Route path="*" element={<ErrorPage />} />
+        </Route>
+        <Route element={<SubLayout />}>
+          <Route path="intro" element={<IntroPage />} />
         </Route>
       </Routes>
     </QueryClientProvider>
