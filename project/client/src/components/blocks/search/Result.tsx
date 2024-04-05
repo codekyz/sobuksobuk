@@ -71,22 +71,27 @@ const Reasult = ({ queryParams, queryType }: PropsType) => {
   const handleReadBook = (book: BookInfoSimple) => {
     if (queryType === "sobuk") {
       setSelectedBook(book);
-      return;
-    }
-    // 카카오검색 정보면 소북DB에 먼저 등록
-    bookSubmitMutate(
-      {
-        ...book,
-        isUserInput: false,
-      },
-      {
-        onSuccess: (data) => {
-          if (data) {
-            setSelectedBook({ ...book, bookId: data.data });
-          }
+    } else {
+      // 카카오검색 정보면 소북DB에 먼저 등록
+      bookSubmitMutate(
+        {
+          title: book.title,
+          author: book.author,
+          publisher: book.publisher,
+          publicationDate: book.publicationDate,
+          isUserInput: false,
+          imageUrl: null,
+          genreId: 1,
         },
-      },
-    );
+        {
+          onSuccess: (data) => {
+            if (data) {
+              setSelectedBook({ ...book, bookId: data.data });
+            }
+          },
+        },
+      );
+    }
   };
 
   // 책 찜하기
@@ -106,8 +111,9 @@ const Reasult = ({ queryParams, queryType }: PropsType) => {
           },
         },
       );
+    } else {
+      bookmarkMutate({ bookId: book.bookId, accessToken: memberToken });
     }
-    bookmarkMutate({ bookId: book.bookId, accessToken: memberToken });
   };
 
   // Dialog 닫기

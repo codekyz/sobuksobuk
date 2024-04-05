@@ -3,7 +3,6 @@ import AvaratImage from "components/atoms/AvatarImage";
 import BigButton from "components/atoms/BigButton";
 import SmallButton from "components/atoms/SmallButton";
 import HelperText from "components/atoms/HelperText";
-import CustomLink from "components/atoms/CustomLink";
 import CustomSnackBar from "components/blocks/CustomSnackBar";
 import CustomTextField from "components/atoms/CustomTextField";
 import CustomTypography from "components/atoms/CustomTypography";
@@ -203,13 +202,6 @@ const SignUpPage = () => {
         mb: 10,
       }}
     >
-      {/* 구경하기 버튼 */}
-      <Box sx={{ position: "fixed", top: "30px", right: "30px" }}>
-        <CustomLink to="../search">
-          <CustomTypography text="🔍구경하기" variant="body1" bold={true} />
-        </CustomLink>
-      </Box>
-
       {/* 회원가입 성공 */}
       <CustomSnackBar
         text="회원가입이 완료되었습니다."

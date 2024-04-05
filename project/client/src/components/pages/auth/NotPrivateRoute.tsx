@@ -12,7 +12,7 @@ const NotPrivateRoute = () => {
   const memberInfo = getStoredMember();
 
   const handleSnackBarClose = () => {
-    navigate("../");
+    navigate("../main");
   };
 
   return memberToken && memberInfo ? (

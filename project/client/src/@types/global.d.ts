@@ -151,6 +151,7 @@ declare global {
     publicationDate: string;
     isUserInput: boolean;
     imageUrl?: string | null;
+    genreId: number;
   }
 
   interface BookInfo {
@@ -162,6 +163,7 @@ declare global {
     createdAt?: string;
     isUserInput: boolean;
     imageUrl: string | null;
+    genreId: number;
   }
 
   interface BookInfoSimple {
@@ -171,6 +173,7 @@ declare global {
     publisher: string;
     imageUrl: string | null;
     publicationDate: string;
+    genreId: number;
   }
 
   interface BookParams {

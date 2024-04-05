@@ -7,9 +7,7 @@ import KakaoApi from "./kakaoApi";
  * @returns { data: BookId }
  */
 
-export const postBook = async (
-  data: BookData,
-): Promise<BookIdResponse | undefined> => {
+export const postBook = async (data: BookData): Promise<BookIdResponse> => {
   try {
     const response = await Api.post("/books", data);
     return response.data;

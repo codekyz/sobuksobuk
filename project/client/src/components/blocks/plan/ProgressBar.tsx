@@ -64,7 +64,7 @@ const ProgressBar = ({ planItem }: PropsType) => {
               width: 25,
             }}
             src={
-              process.env.PUBLIC_URL +
+              import.meta.env.BASE_URL +
               ((percent >= 90 && "img/step3.png") ||
                 (percent < 90 && 29 < percent && "img/step2.png") ||
                 "img/step1.png")

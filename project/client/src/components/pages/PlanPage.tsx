@@ -84,24 +84,45 @@ const PlanPage = () => {
         !isSuccessNotCreatedPost ||
         !isSuccessNotStarted ||
         !isSuccessOverdue) && (
-        <Box sx={{ m: 5 }}>
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            my: 5,
+          }}
+        >
           <CustomTypography
             text="독서 정보를 가져오는데 실패했어요. 잠시 후 다시 시도해주세요."
+            variant="h5"
             bold={true}
-            variant="body1"
           />
         </Box>
       )}
 
-      {!readingPlans?.data &&
-        !completedPlans?.data &&
-        !notCreatedPostPlans?.data &&
-        !notStartedPlans?.data &&
-        !overduePlans?.data && (
-          <Box sx={{ m: 5 }}>
+      {readingPlans?.data.length === 0 &&
+        completedPlans?.data.length === 0 &&
+        notCreatedPostPlans?.data.length === 0 &&
+        notStartedPlans?.data.length === 0 &&
+        overduePlans?.data.length === 0 && (
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              my: 5,
+            }}
+          >
             <CustomTypography
-              text="등록된 독서 정보가 없어요."
+              text="등록된 독서 정보가 없어요😥"
               variant="h5"
+              bold={true}
+            />
+            <CustomTypography
+              text="도서 탐색에서 도서를 검색하고 독서 정보를 등록해보세요"
+              variant="body2"
               bold={true}
             />
           </Box>

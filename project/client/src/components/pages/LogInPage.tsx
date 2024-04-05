@@ -18,18 +18,6 @@ interface FormValue {
 }
 
 const LogInPage = () => {
-  const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-  const redirectUri = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
-
-  const url =
-    "https://accounts.google.com/o/oauth2/v2/auth" +
-    "?client_id=" +
-    clientId +
-    "&redirect_uri=" +
-    redirectUri +
-    "&response_type=token" +
-    "&scope=email profile";
-
   const { setMember, setToken } = useMemberStore();
   const memberToken = getStoredToken();
 
@@ -74,16 +62,6 @@ const LogInPage = () => {
     reset();
   };
 
-  // 카카오 로그인 버튼 함수
-  const handleKakaoLogIn = () => {
-    console.log("kakao login");
-  };
-
-  // 구글 로그인 버튼 함수
-  const handleGoogleLogIn = () => {
-    window.open(url, "_blank", "noopener, noreferrer");
-  };
-
   useEffect(() => {
     // get myInfo 성공시
     if (isLogInSuccess && isMyPageSuccess && myPage) {
@@ -101,13 +79,6 @@ const LogInPage = () => {
         maxWidth: 500,
       }}
     >
-      {/* 구경하기 버튼 */}
-      <Box sx={{ position: "fixed", top: "30px", right: "30px" }}>
-        <CustomLink to="../search">
-          <CustomTypography text="🔍구경하기" variant="body1" bold={true} />
-        </CustomLink>
-      </Box>
-
       {/* 로그인 실패 */}
       <CustomSnackBar
         text="아이디 또는 비밀번호가 틀립니다."
@@ -168,7 +139,6 @@ const LogInPage = () => {
           display: "flex",
           justifyContent: "space-between",
           marginTop: "10px",
-          borderBottom: "1px solid",
           paddingBottom: "25px",
         }}
       >
@@ -185,10 +155,10 @@ const LogInPage = () => {
       </Box>
 
       {/* 소셜 로그인 */}
-      <Box sx={{ display: "flex", gap: 1 }}>
+      {/* <Box sx={{ display: "flex", gap: 1 }}>
         <BigButton text="카카오로 로그인" handleClickEvent={handleKakaoLogIn} />
         <BigButton text="구글로 로그인" handleClickEvent={handleGoogleLogIn} />
-      </Box>
+      </Box> */}
     </Box>
   );
 };
