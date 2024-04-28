@@ -60,11 +60,6 @@ const IntroPage = () => {
           variant="body2"
           bold={true}
         />
-        <CustomTypography
-          text="(임시 데이터로 구경하기 기능을 제공하고 있습니다)"
-          variant="body2"
-          bold={true}
-        />
       </Box>
     </Box>
   );

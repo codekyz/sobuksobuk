@@ -4,6 +4,7 @@ import BookImage from "components/atoms/BookImage";
 import CustomTextField from "components/atoms/CustomTextField";
 import CustomTypography from "components/atoms/CustomTypography";
 import SmallButton from "components/atoms/SmallButton";
+import Section from "components/blocks/Section";
 import UserProfile from "components/blocks/UserProfile";
 import {
   useChallengeDelete,
@@ -176,57 +177,109 @@ const ChallengeDetailPage = () => {
         </Box>
       ) : (
         <Box>
-          <BookImage
-            src={challengeInfo?.data.challengeDetailResponse.bookImage}
-            width={150}
-            height={200}
-          />
-          <CustomTypography
-            text={"" + challengeInfo?.data.challengeDetailResponse.bookTitle}
-            variant="h5"
-            bold={true}
-          />
-          <CustomTypography
-            text={
-              challengeInfo?.data.challengeDetailResponse.genre +
-              " / " +
-              challengeInfo?.data.challengeDetailResponse.startDate +
-              " - " +
-              challengeInfo?.data.challengeDetailResponse.endDate
-            }
-            variant="body2"
-            bold={false}
-          />
-          <CustomTypography
-            text={
-              "챌린지 소개 : " +
-              challengeInfo?.data.challengeDetailResponse.content
-            }
-            variant="h6"
-            bold={true}
-          />
-          {/* 달성률 그래프 수정 필요 */}
-          <Box>[달성률 그래프 부분]</Box>
+          <Section>
+            <BookImage
+              src={challengeInfo?.data.challengeDetailResponse.bookImage}
+              width={150}
+              height={200}
+            />
+            <Box sx={{ mb: 2 }}>
+              <CustomTypography
+                text={
+                  "📘 " + challengeInfo?.data.challengeDetailResponse.bookTitle
+                }
+                variant="h5"
+                bold={true}
+              />
+            </Box>
+            <CustomTypography
+              text={
+                "#" +
+                challengeInfo?.data.challengeDetailResponse.genre +
+                " / " +
+                challengeInfo?.data.challengeDetailResponse.startDate +
+                " - " +
+                challengeInfo?.data.challengeDetailResponse.endDate
+              }
+              variant="body2"
+              bold={false}
+            />
+            <CustomTypography
+              text={"💬 " + challengeInfo?.data.challengeDetailResponse.content}
+              variant="body1"
+              bold={true}
+            />
+          </Section>
+          <Box sx={{ mt: 6 }}>
+            <CustomTypography
+              text={
+                "🔥 현재 달성률 " +
+                challengeInfo?.data.challengeDetailResponse.successRate +
+                "%"
+              }
+              variant="h6"
+              bold={true}
+            />
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+              }}
+            >
+              <Box
+                sx={{
+                  position: "relative",
+                  width: "100%",
+                  height: "25px",
+                  backgroundColor: "primary.main",
+                  borderRadius: 5,
+                  my: 1,
+                }}
+              >
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width:
+                      challengeInfo?.data.challengeDetailResponse.successRate +
+                      "%",
+                    height: "25px",
+                    backgroundColor: "text.primary",
+                    borderRadius: 5,
+                  }}
+                />
+              </Box>
+            </Box>
+          </Box>
         </Box>
       )}
 
-      <CustomTypography text="챌린지 참여 인원 목록" variant="h6" bold={true} />
-
-      {/* 호스트 표시 추가 필요 */}
-      <Grid>
-        {challengeInfo &&
-          challengeInfo?.data.challengeMemberInfoList.map((memberItem) => (
-            <UserProfile
-              key={memberItem.id}
-              memberId={
-                memberItem.nickname === memberInfo?.nickname
-                  ? null
-                  : memberItem.id
-              }
-              avatarSize={50}
-            />
-          ))}
-      </Grid>
+      <Section>
+        <CustomTypography
+          text={
+            "챌린지 참여 인원 : " +
+            challengeInfo?.data.challengeDetailResponse.countParticipant
+          }
+          variant="h6"
+          bold={true}
+        />
+        {/* 호스트 표시 추가 필요 */}
+        <Grid>
+          {challengeInfo &&
+            challengeInfo?.data.challengeMemberInfoList.map((memberItem) => (
+              <UserProfile
+                key={memberItem.id}
+                memberId={
+                  memberItem.nickname === memberInfo?.nickname
+                    ? null
+                    : memberItem.id
+                }
+                avatarSize={50}
+              />
+            ))}
+        </Grid>
+      </Section>
     </Box>
   );
 };
